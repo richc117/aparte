@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <title>Aparté: private dictation for Mac</title>
+  <meta name="description" content="Aparté turns your voice into text on your Mac and copies it to the clipboard. It works entirely on your Mac and never connects to the internet.">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
+  <meta property="og:title" content="Aparté: private dictation for Mac">
+  <meta property="og:description" content="Hold a shortcut, speak, and let go. The text is on your clipboard. Everything happens on your Mac.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preload" href="fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+
+    <header class="masthead">
+      <a class="wordmark" href="./">Aparté</a>
+      <nav aria-label="Sections">
+        <a href="#privacy">Privacy</a>
+        <a href="#install">Install</a>
+        <a href="#feedback">Feedback</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="statement">
+        <div>
+          <h1 id="statement">Dictation that keeps to itself.</h1>
+          <p class="lede">Hold a shortcut, speak, and let go. Aparté turns your voice into text on your Mac and copies it to the clipboard. It never connects to the internet.</p>
+          <p><a class="button" href="https://github.com/richc117/aparte/releases/latest/download/Aparte.zip">Download for Mac</a></p>
+          <p class="fine">Version 0.1.0, 448 MB. For Macs with Apple Silicon running macOS 14 or later. English only.</p>
+        </div>
+
+        <svg class="swell" viewBox="176 226 672 572" role="img" aria-label="The Aparté mark: five nested lines rising into a single peak">
+          <path pathLength="1" d="M202 492 H342 C427 492 461 252 512 252 C563 252 597 492 682 492 H822"/>
+          <path pathLength="1" d="M202 562 H342 C427 562 461 372 512 372 C563 372 597 562 682 562 H822"/>
+          <path pathLength="1" d="M202 632 H342 C427 632 461 492 512 492 C563 492 597 632 682 632 H822"/>
+          <path pathLength="1" d="M202 702 H342 C427 702 461 612 512 612 C563 612 597 702 682 702 H822"/>
+          <path pathLength="1" d="M202 772 H342 C427 772 461 732 512 732 C563 732 597 772 682 772 H822"/>
+        </svg>
+      </section>
+
+      <section class="row" id="how" aria-labelledby="how-title">
+        <h2 id="how-title">How it works</h2>
+        <div class="body">
+          <dl class="steps">
+            <div>
+              <dt>Hold</dt>
+              <dd>Press and hold Control-Option-Space. You can choose a different shortcut in Settings.</dd>
+            </div>
+            <div>
+              <dt>Speak</dt>
+              <dd>Say what you want written. Aparté listens only while the shortcut is held.</dd>
+            </div>
+            <div>
+              <dt>Release</dt>
+              <dd>Let go, and a soft sound tells you the text is on your clipboard. Paste it wherever you like.</dd>
+            </div>
+          </dl>
+          <p>If you would rather not hold a key, Settings has a mode where you press once to start and again to stop. Recordings end on their own after five minutes.</p>
+          <p>Aparté lives in the menu bar. From there you can open a history of your dictations, and a list of fix-up words for names and terms you want spelled your way.</p>
+        </div>
+      </section>
+
+      <section class="row" id="privacy" aria-labelledby="privacy-title">
+        <h2 id="privacy-title">Privacy</h2>
+        <div class="body">
+          <p><strong>No network.</strong> Aparté has no permission to connect to the internet, so it cannot send your voice or your text anywhere. The speech model is inside the app, and nothing is downloaded when you open it.</p>
+          <p><strong>Audio stays in memory.</strong> Your recording is turned into text and then discarded. It is never saved to disk.</p>
+          <p><strong>The clipboard copy stays local.</strong> It is not shared with your other Apple devices, and clipboard managers are asked to skip it.</p>
+          <p><strong>History stays on your Mac.</strong> Saved dictations live in the app’s own folder, are left out of Time Machine backups, and are deleted after 30 days unless you choose otherwise. You can delete one or all of them at any time, or turn history off.</p>
+          <p><strong>It does not type into other apps.</strong> Aparté only writes to the clipboard, so the one permission it asks for is the microphone.</p>
+          <p>You can check the no-network claim yourself. This prints the app’s permissions:</p>
+          <pre><code>codesign -d --entitlements :- /Applications/Aparte.app</code></pre>
+          <p>Two entries appear, <code>com.apple.security.app-sandbox</code> and <code>com.apple.security.device.audio-input</code>. There is no network entry.</p>
+        </div>
+      </section>
+
+      <section class="row" id="install" aria-labelledby="install-title">
+        <h2 id="install-title">Install</h2>
+        <div class="body">
+          <ol class="install">
+            <li>Download <code>Aparte.zip</code>, open it, and drag Aparté into your Applications folder.</li>
+            <li>Open it. macOS may ask you to confirm an app downloaded from the internet. Apple has checked this release for malicious software, so choose Open.</li>
+            <li>The first launch prepares the speech model for your Mac. An hourglass shows in the menu bar for up to a minute. Later launches take seconds.</li>
+            <li>Allow microphone access when macOS asks.</li>
+          </ol>
+          <p>To check that the download is intact, run this in Terminal. It should print the line below it.</p>
+          <pre><code>shasum -a 256 ~/Downloads/Aparte.zip</code></pre>
+          <pre class="hash"><code>41cf3cbbe9edbf1b5700b17241194b8cfb998903931cade169bfeb3b409dff1d</code></pre>
+          <p class="small">Aparté never checks for updates by itself. New versions appear under <a href="https://github.com/richc117/aparte/releases">Releases</a>.</p>
+        </div>
+      </section>
+
+      <section class="row" id="feedback" aria-labelledby="feedback-title">
+        <h2 id="feedback-title">Feedback</h2>
+        <div class="body">
+          <p>Questions, ideas and problems are welcome. <a href="https://github.com/richc117/aparte/issues/new">Open an issue on GitHub</a>.</p>
+          <p class="small">Issues are public, so please leave out anything private, including dictated text.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="colophon">
+      <p>Aparté is a personal project by Richard Caballero. Provided as is, without warranty.</p>
+      <nav aria-label="Footer">
+        <a href="credits.html">Credits</a>
+        <a href="https://github.com/richc117/aparte/issues">Issues</a>
+        <a href="https://github.com/richc117/aparte/releases">Releases</a>
+      </nav>
+    </footer>
+
+  </div>
+</body>
+</html>

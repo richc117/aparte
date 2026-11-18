@@ -1,0 +1,406 @@
+/* Aparté site. One stylesheet, no JavaScript, no third-party requests.
+   Brand: Swell mark, #121212 ground, #F4F1EA ink, Instrument Serif and Instrument Sans. */
+
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/instrument-serif-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/instrument-serif-latin-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/instrument-sans-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fonts/instrument-sans-latin-500-normal.woff2") format("woff2");
+}
+
+:root {
+  --ground: #121212;
+  --ink: #f4f1ea;
+  --soft: rgb(244 241 234 / 0.72);
+  --faint: rgb(244 241 234 / 0.56);
+  --rule: rgb(244 241 234 / 0.14);
+  --wash: rgb(244 241 234 / 0.05);
+
+  --serif: "Instrument Serif", "Iowan Old Style", "Times New Roman", serif;
+  --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --gutter: clamp(1.25rem, 5vw, 3.5rem);
+  --section: clamp(3.5rem, 8vw, 6.5rem);
+  color-scheme: dark light;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --ground: #f4f1ea;
+    --ink: #121212;
+    --soft: rgb(18 18 18 / 0.74);
+    --faint: rgb(18 18 18 / 0.62);
+    --rule: rgb(18 18 18 / 0.14);
+    --wash: rgb(18 18 18 / 0.045);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--ground);
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font: 400 1.0625rem / 1.65 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.page {
+  max-width: 74rem;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.24em;
+  transition: text-decoration-color 160ms ease;
+}
+a:hover {
+  text-decoration-color: var(--ink);
+}
+a:focus-visible,
+.button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+/* ---------- Header ---------- */
+
+.masthead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 1.75rem;
+}
+
+.wordmark {
+  font: italic 400 1.75rem / 1 var(--serif);
+  letter-spacing: 0.005em;
+  text-decoration: none;
+}
+
+.masthead nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.9375rem;
+}
+.masthead nav a {
+  color: var(--soft);
+  text-decoration: none;
+}
+.masthead nav a:hover {
+  color: var(--ink);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+  padding-block: clamp(1.5rem, 5vw, 4rem) var(--section);
+}
+
+.swell {
+  display: block;
+  width: min(100%, 34rem);
+  height: auto;
+  margin-inline: auto;
+  color: var(--ink);
+  overflow: visible;
+}
+.swell path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 16;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* The one moment of motion: the five lines draw in once, bottom to top. */
+@media (prefers-reduced-motion: no-preference) {
+  .swell path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    opacity: 0;
+    animation: draw 1900ms cubic-bezier(0.45, 0.05, 0.2, 1) both;
+  }
+  .swell path:nth-child(5) { animation-delay: 150ms; }
+  .swell path:nth-child(4) { animation-delay: 290ms; }
+  .swell path:nth-child(3) { animation-delay: 430ms; }
+  .swell path:nth-child(2) { animation-delay: 570ms; }
+  .swell path:nth-child(1) { animation-delay: 710ms; }
+}
+@keyframes draw {
+  0% { stroke-dashoffset: 1; opacity: 0; }
+  5% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+h1 {
+  margin: 0 0 1.75rem;
+  font: 400 clamp(3.25rem, 8.4vw, 6.5rem) / 0.98 var(--serif);
+  letter-spacing: -0.015em;
+}
+
+.lede {
+  max-width: 30rem;
+  margin-bottom: 2rem;
+  color: var(--soft);
+  font-size: 1.1875rem;
+  line-height: 1.6;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  height: 3rem;
+  padding: 0 1.625rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--ground);
+  font: 500 1rem / 1 var(--sans);
+  text-decoration: none;
+  transition: opacity 160ms ease;
+}
+.button:hover {
+  opacity: 0.88;
+}
+
+.fine {
+  margin: 1.25rem 0 0;
+  max-width: 30rem;
+  color: var(--faint);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+@media (min-width: 56rem) {
+  .hero {
+    grid-template-columns: 7fr 5fr;
+    column-gap: 4rem;
+    min-height: min(44rem, calc(100svh - 6rem));
+  }
+  .swell {
+    width: 100%;
+    margin-inline: 0;
+  }
+}
+
+/* On narrow screens the mark leads, a little smaller. */
+@media (max-width: 55.99rem) {
+  .swell {
+    order: -1;
+    width: min(78%, 22rem);
+  }
+}
+
+/* ---------- Rows ---------- */
+
+.row {
+  display: grid;
+  gap: 1.5rem;
+  padding-block: var(--section);
+  border-top: 1px solid var(--rule);
+}
+
+@media (min-width: 56rem) {
+  .row {
+    grid-template-columns: 5fr 7fr;
+    column-gap: 4rem;
+  }
+}
+
+h2 {
+  margin: 0;
+  font: 400 clamp(1.875rem, 3.4vw, 2.5rem) / 1.08 var(--serif);
+  letter-spacing: -0.005em;
+}
+
+.body {
+  max-width: 36rem;
+  color: var(--soft);
+}
+.body strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+.body > :last-child {
+  margin-bottom: 0;
+}
+
+/* How it works: the three steps are a sequence, so each is named. */
+.steps {
+  display: grid;
+  gap: 1.75rem;
+  margin: 0 0 2rem;
+}
+.steps dt {
+  margin: 0 0 0.25rem;
+  color: var(--ink);
+  font: italic 400 1.75rem / 1.1 var(--serif);
+}
+.steps dd {
+  margin: 0;
+}
+
+/* Install: a numbered sequence, with the numbers set quietly in the margin. */
+.install {
+  margin: 0 0 2rem;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+.install li {
+  position: relative;
+  padding-left: 2.25rem;
+  margin-bottom: 1.1rem;
+  counter-increment: step;
+}
+.install li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--faint);
+  font: italic 400 1.25rem / 1.5 var(--serif);
+}
+
+code,
+pre {
+  font-family: var(--mono);
+  font-size: 0.875rem;
+}
+code {
+  padding: 0.12em 0.4em;
+  border-radius: 4px;
+  background: var(--wash);
+  color: var(--ink);
+}
+pre {
+  margin: 0 0 1rem;
+  padding: 1rem 1.125rem;
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--wash);
+  color: var(--ink);
+  line-height: 1.6;
+}
+pre code {
+  padding: 0;
+  background: none;
+}
+/* The checksum is 64 characters: let it wrap rather than run under the border. */
+.hash code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 0.8125rem;
+}
+
+.small {
+  color: var(--faint);
+  font-size: 0.9375rem;
+}
+
+/* ---------- Credits ---------- */
+
+.credits {
+  display: grid;
+  gap: 2rem;
+  margin: 0;
+}
+.credits dt {
+  margin: 0 0 0.25rem;
+  color: var(--ink);
+  font: 400 1.5rem / 1.2 var(--serif);
+}
+.credits dd {
+  margin: 0;
+}
+
+/* ---------- Footer ---------- */
+
+.colophon {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding-block: 2.5rem 3.5rem;
+  border-top: 1px solid var(--rule);
+  color: var(--faint);
+  font-size: 0.9375rem;
+}
+.colophon p {
+  margin: 0;
+}
+.colophon nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+.colophon a {
+  color: var(--soft);
+  text-decoration: none;
+}
+.colophon a:hover {
+  color: var(--ink);
+}
+
+/* Credits page title, set like the hero statement but smaller. */
+.page-title {
+  margin: 0;
+  padding-block: clamp(1.5rem, 5vw, 4rem) clamp(2rem, 4vw, 3rem);
+  font: 400 clamp(2.75rem, 6.4vw, 4.75rem) / 1 var(--serif);
+  letter-spacing: -0.012em;
+}

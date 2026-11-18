@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <title>Credits: Aparté</title>
+  <meta name="description" content="The models, libraries and fonts Aparté is built on, and their licenses.">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+
+    <header class="masthead">
+      <a class="wordmark" href="./">Aparté</a>
+      <nav aria-label="Sections">
+        <a href="./#privacy">Privacy</a>
+        <a href="./#install">Install</a>
+        <a href="./#feedback">Feedback</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="page-title">Credits</h1>
+
+      <section class="row" aria-labelledby="built-on">
+        <h2 id="built-on">Built on</h2>
+        <dl class="body credits">
+          <div>
+            <dt>Parakeet TDT 0.6B v2</dt>
+            <dd>The speech recognition model inside Aparté, created by NVIDIA and released under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a> license. Aparté uses the CoreML conversion made by FluidInference, which is the only change to the original. <a href="https://huggingface.co/nvidia/parakeet-tdt-0.6b-v2">Original model</a>, <a href="https://huggingface.co/FluidInference/parakeet-tdt-0.6b-v2-coreml">CoreML conversion</a>.</dd>
+          </div>
+          <div>
+            <dt>FluidAudio</dt>
+            <dd>The Swift library that runs the model on your Mac’s Neural Engine, by FluidInference, under the Apache License 2.0. <a href="https://github.com/FluidInference/FluidAudio">Project</a>, <a href="licenses/FluidAudio-LICENSE.txt">license text</a>.</dd>
+          </div>
+          <div>
+            <dt>KeyboardShortcuts</dt>
+            <dd>Lets you choose your own shortcut. By Sindre Sorhus, under the MIT License. <a href="https://github.com/sindresorhus/KeyboardShortcuts">Project</a>, <a href="licenses/KeyboardShortcuts-LICENSE.txt">license text</a>.</dd>
+          </div>
+          <div>
+            <dt>Instrument Serif and Instrument Sans</dt>
+            <dd>The typefaces on this site, and the Aparté wordmark, by the Instrument project under the SIL Open Font License 1.1. <a href="https://github.com/Instrument/instrument-serif">Instrument Serif</a>, <a href="fonts/OFL-Instrument-Serif.txt">license</a>. <a href="https://github.com/Instrument/instrument-sans">Instrument Sans</a>, <a href="fonts/OFL-Instrument-Sans.txt">license</a>.</dd>
+          </div>
+        </dl>
+      </section>
+    </main>
+
+    <footer class="colophon">
+      <p>Aparté is a personal project by Richard Caballero. Provided as is, without warranty.</p>
+      <nav aria-label="Footer">
+        <a href="./">Home</a>
+        <a href="https://github.com/richc117/aparte/issues">Issues</a>
+        <a href="https://github.com/richc117/aparte/releases">Releases</a>
+      </nav>
+    </footer>
+
+  </div>
+</body>
+</html>
