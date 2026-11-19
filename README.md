@@ -1,80 +1,76 @@
-# Aparté website
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/swell-dark.svg">
+    <img src="docs/swell-light.svg" alt="The Aparté mark: five nested lines rising into a single peak" width="300">
+  </picture>
+</p>
 
-The public site for Aparté, a private dictation app for Mac. Plain HTML and two
-stylesheets. No JavaScript, no analytics, no third-party requests: the fonts are served
-from this folder and the pages carry a Content-Security-Policy that allows nothing else.
+<h1 align="center">Aparté</h1>
 
-The app's source code is not here. It stays in a private repository.
+<p align="center"><em>Dictation that keeps to itself.</em></p>
 
-## Files
+Hold a shortcut, speak, and let go. Aparté turns your voice into text on your Mac and copies it to the clipboard. It never connects to the internet.
 
-| Path | What it is |
-|---|---|
-| `index.html` | The page: statement, how it works, privacy, install, feedback |
-| `credits.html` | Credits and licenses for the model, libraries and fonts |
-| `styles.css` | All styling. Dark by default, light when the visitor's system is set to light |
-| `animation.css` | The animated scene in How it works (CSS and SVG, no JavaScript). Built from `tools/animation/`, see below |
-| `tools/animation/` | `build.py` and `static.css`: edit the timing or the look there, then run `python3 tools/animation/build.py` to rewrite `animation.css` |
-| `fonts/` | Instrument Serif and Instrument Sans (Latin subsets, woff2) and their OFL licenses |
-| `licenses/` | License texts for FluidAudio and KeyboardShortcuts |
-| `favicon.svg`, `apple-touch-icon.png` | From the app's brand kit |
+<p align="center"><strong><a href="https://github.com/richc117/aparte/releases/latest/download/Aparte.zip">Download Aparté for Mac</a></strong></p>
 
-Every link is relative, so the site works at `richc117.github.io/aparte/` without changes.
+<p align="center"><sub>Version 0.1.0, 453 MB. For Macs with Apple Silicon running macOS 14 or later. English only.</sub></p>
 
-## Look at it locally
+## How it works
+
+**Hold.** Press and hold <kbd>Control</kbd> <kbd>Option</kbd> <kbd>Space</kbd> together. You can choose a different shortcut in Settings.
+
+**Speak.** Say what you want written. Aparté listens only while the shortcut is held.
+
+**Release.** Let go, and a soft sound tells you the text is on your clipboard. Paste it wherever you like.
+
+If you would rather not hold a key, Settings has a mode where you press once to start and again to stop. Recordings end on their own after five minutes.
+
+Aparté lives in the menu bar. From there you can open a history of your dictations, and a list of fix-up words for names and terms you want spelled your way.
+
+## Privacy
+
+**No network.** Aparté has no permission to connect to the internet, so it cannot send your voice or your text anywhere. The speech model is inside the app, and nothing is downloaded when you open it.
+
+**Audio stays in memory.** Your recording is turned into text and then discarded. It is never saved to disk.
+
+**The clipboard copy stays local.** It is not shared with your other Apple devices, and clipboard managers are asked to skip it.
+
+**History stays on your Mac.** Saved dictations live in the app's own folder, are left out of Time Machine backups, and are deleted after 30 days unless you choose otherwise. You can delete one or all of them at any time, or turn history off.
+
+**It does not type into other apps.** Aparté only writes to the clipboard, so the one permission it asks for is the microphone.
+
+You can check the no-network claim yourself. This prints the app's permissions:
 
 ```
-python3 -m http.server 8000 --bind 127.0.0.1
+codesign -d --entitlements :- /Applications/Aparte.app
 ```
 
-Then open http://127.0.0.1:8000. (Opening the files directly with `file://` shows
-fallback fonts, because the Content-Security-Policy treats local files as a different
-origin.)
+Two entries appear, `com.apple.security.app-sandbox` and `com.apple.security.device.audio-input`. There is no network entry.
 
-## Publishing (once)
+## Install
 
-1. Create a public GitHub repo named `aparte` under `richc117`.
-2. Push this folder to it.
-3. Settings, Pages: deploy from the `main` branch, root folder.
-4. The site appears at `https://richc117.github.io/aparte/`.
+1. [Download `Aparte.zip`](https://github.com/richc117/aparte/releases/latest/download/Aparte.zip), open it, and drag Aparté into your Applications folder.
+2. Open it. macOS may ask you to confirm an app downloaded from the internet. Apple has checked this release for malicious software, so choose Open.
+3. The first launch prepares the speech model for your Mac. A window shows its progress and tells you when Aparté is ready. This takes up to a minute, and later launches take seconds.
+4. Allow microphone access when macOS asks.
 
-The same repo hosts the downloads (Releases) and feedback (Issues). Turn on Issues in
-Settings if they are off.
+Aparté never checks for updates by itself. New versions appear under [Releases](https://github.com/richc117/aparte/releases).
 
-## Each new release
+## Feedback
 
-1. In the app repository, from a clean committed tree: `./scripts/package.sh --release`.
-   It prints the SHA-256 and writes `dist/Aparte.zip`.
-2. Attach `Aparte.zip` to a GitHub Release in this repo. Keep the file named exactly
-   `Aparte.zip`, because the Download button links to
-   `releases/latest/download/Aparte.zip`.
-3. In `index.html`, update the version and the size in the fine print under the Download
-   button. (The page does not show a checksum. `package.sh` prints one and PROGRESS.md in
-   the app repository records it.)
-4. Commit and push. Pages updates within a minute or two.
+Questions, ideas and problems are welcome. [Open an issue on GitHub](https://github.com/richc117/aparte/issues/new).
 
-The zip is 448 MB, so it must never be committed to the repository (GitHub rejects
-files over 100 MB). Release attachments are the right place for it.
+Issues are public, so please leave out anything private, including dictated text.
 
-## Not done yet
+## Credits
 
-- A social preview image (`og:image`) for link previews.
-- A statement of the app's license terms. The footer says only "Provided as is,
-  without warranty."
-- The next app release must include the Credits window (commit `b7ffb4f` in the app
-  repository). Build 27, the zip currently in `dist/`, predates it.
+Aparté is built on the work of others.
 
-## The How it works animation
+- **Parakeet TDT 0.6B v2**, the speech recognition model inside Aparté, created by NVIDIA and released under the [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/) license. Aparté uses the CoreML conversion made by FluidInference, which is the only change to the original. [Original model](https://huggingface.co/nvidia/parakeet-tdt-0.6b-v2), [CoreML conversion](https://huggingface.co/FluidInference/parakeet-tdt-0.6b-v2-coreml).
+- **FluidAudio**, the Swift library that runs the model on your Mac's Neural Engine, by FluidInference, under the Apache License 2.0. [Project](https://github.com/FluidInference/FluidAudio), [license text](licenses/FluidAudio-LICENSE.txt).
+- **KeyboardShortcuts**, which lets you choose your own shortcut, by Sindre Sorhus, under the MIT License. [Project](https://github.com/sindresorhus/KeyboardShortcuts), [license text](licenses/KeyboardShortcuts-LICENSE.txt).
+- **Instrument Serif** and **Instrument Sans**, the typefaces on the Aparté website and in its wordmark, by the Instrument project under the SIL Open Font License 1.1. [Instrument Serif](https://github.com/Instrument/instrument-serif) ([license](fonts/OFL-Instrument-Serif.txt)), [Instrument Sans](https://github.com/Instrument/instrument-sans) ([license](fonts/OFL-Instrument-Sans.txt)).
 
-A 14-second loop of the three steps: keys press, the menu bar icon changes state (the
-app's real Ready, Listening and Transcribing icons), the five lines move like a voice,
-and on release a ring leaves the icon and the text lands on the clipboard. The steps on
-the left light up in step with it. Everything runs on one shared timeline, so change
-times only in `tools/animation/build.py`.
+---
 
-- With "reduce motion" on, nothing moves: the page shows the finished state.
-- The voice lines are illustration. The app itself has no live waveform.
-- The sentence on the clipboard is placeholder text.
-- Every animation must start at 0 and end at 14 seconds. A missing end keyframe makes the
-  browser animate toward the element's own style, which once made the lines flash at the
-  end of the loop. `build.py` refuses to build if one is missing.
+Aparté is a personal project by Richard Caballero. Provided as is, without warranty.
