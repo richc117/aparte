@@ -48,7 +48,9 @@ Settings if they are off.
 2. Attach `Aparte.zip` to a GitHub Release in this repo. Keep the file named exactly
    `Aparte.zip`, because the Download button links to
    `releases/latest/download/Aparte.zip`.
-3. In `index.html`, update the version, the size, and the SHA-256 in the Install section.
+3. In `index.html`, update the version and the size in the fine print under the Download
+   button. (The page does not show a checksum. `package.sh` prints one and PROGRESS.md in
+   the app repository records it.)
 4. Commit and push. Pages updates within a minute or two.
 
 The zip is 448 MB, so it must never be committed to the repository (GitHub rejects

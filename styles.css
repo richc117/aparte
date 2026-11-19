@@ -407,30 +407,6 @@ pre code {
   padding: 0;
   background: none;
 }
-/* A command and what it prints: one box, a hairline between. */
-.shell {
-  margin: 0 0 1rem;
-  border: 1px solid var(--rule);
-  border-radius: 8px;
-  background: var(--wash);
-}
-.shell pre {
-  margin: 0;
-  border: 0;
-  border-radius: 0;
-  background: none;
-}
-.shell pre + pre {
-  border-top: 1px solid var(--rule);
-  color: var(--soft);
-}
-/* The checksum is 64 characters: let it wrap rather than run under the border. */
-.hash code {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  font-size: 0.8125rem;
-}
-
 .small {
   color: var(--faint);
   font-size: 0.9375rem;
