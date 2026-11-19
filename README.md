@@ -57,6 +57,5 @@ files over 100 MB). Release attachments are the right place for it.
 - A social preview image (`og:image`) for link previews.
 - A statement of the app's license terms. The footer says only "Provided as is,
   without warranty."
-- The app itself does not yet show the third-party notices (Apache-2.0 and MIT ask for
-  the license text to travel with the software). This site's Credits page covers the
-  website; the app needs a notices file or an acknowledgements window.
+- The next app release must include the Credits window (commit `b7ffb4f` in the app
+  repository). Build 27, the zip currently in `dist/`, predates it.
