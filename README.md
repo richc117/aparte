@@ -13,7 +13,7 @@ Hold a shortcut, speak, and let go. Aparté turns your voice into text on your M
 
 <p align="center"><strong><a href="https://github.com/richc117/aparte/releases/latest/download/Aparte.zip">Download Aparté for Mac</a></strong></p>
 
-<p align="center"><sub>Version 0.1.0, 453 MB. For Macs with Apple Silicon running macOS 14 or later. English only.</sub></p>
+<p align="center"><sub>Version 0.1.1, 453 MB. For Macs with Apple Silicon running macOS 14 or later. English only.</sub></p>
 
 <p align="center"><a href="https://richc117.github.io/aparte/">richc117.github.io/aparte</a></p>
 

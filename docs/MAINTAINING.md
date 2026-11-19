@@ -37,8 +37,8 @@ origin.)
 ## Where it lives
 
 The site is live at https://richc117.github.io/aparte/ (GitHub Pages, `main` branch, root
-folder). A push to `main` updates it within a minute or two. The v0.1.0 Release holds the
-download. The repository's "About" link and the README both point at the site.
+folder). A push to `main` updates it within a minute or two. The latest Release (currently
+v0.1.1) holds the download. The repository's "About" link and the README both point at the site.
 
 ## Each new release
 
