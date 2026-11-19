@@ -1,0 +1,184 @@
+/* "How it works": the animated scene beside the three steps.
+   One 14 s timeline drives everything, so the steps on the left light up in step with
+   the scene on the right. Without motion (reduced-motion), the page shows the finished
+   state: keys up, the mark at rest, the text on the clipboard, every step lit. */
+
+:root {
+  --key-down: rgb(244 241 234 / 0.2);
+  --key-edge-down: rgb(244 241 234 / 0.62);
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --key-down: rgb(18 18 18 / 0.13);
+    --key-edge-down: rgb(18 18 18 / 0.6);
+  }
+}
+
+/* ---------- Layout: copy on the left, the scene on the right ---------- */
+
+.demo-row > h2 {
+  position: static;
+}
+.demo-row .stage {
+  margin-top: 0.5rem;
+}
+@media (min-width: 56rem) {
+  .demo-row {
+    grid-template-areas:
+      "title stage"
+      "copy  stage";
+    grid-template-rows: auto 1fr;
+    align-items: start;
+    row-gap: 2rem;
+  }
+  .demo-row > h2 { grid-area: title; }
+  .demo-row > .copy { grid-area: copy; }
+  .demo-row > .stage {
+    grid-area: stage;
+    position: sticky;
+    top: 2rem;
+    margin-top: 0;
+  }
+}
+
+/* ---------- The scene ---------- */
+
+.stage {
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+  max-width: 38rem;
+  aspect-ratio: 1;
+}
+.scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.frame {
+  fill: none;
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+.bar { fill: var(--wash); }
+.bar-rule { stroke: var(--rule); stroke-width: 1; }
+.dim { fill: var(--ink); opacity: 0.22; }
+
+/* The app's three menu bar states: Ready, Listening (on a tile), Transcribing. */
+.glyph-line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 64;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.glyph-inv { stroke: var(--ground); }
+.glyph-text { stroke-width: 2.8; }
+.g-listen, .g-trans { opacity: 0; }
+
+/* The soft sound, drawn as rings. */
+.ring {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* The Swell, five lines. Each is drawn from its own baseline up, so scaling it in Y
+   moves only the peak and the flat ends stay put. */
+.voice {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 0.85cqw;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform-origin: 0 0;
+}
+
+/* Keys: the same keycaps as the page, sized with the scene. */
+.keys {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 65.2%;
+  display: flex;
+  justify-content: center;
+  gap: 2cqw;
+}
+.stage kbd {
+  padding: 0.62em 1.05em 0.58em;
+  border: 1px solid var(--key-edge);
+  border-radius: 0.55em;
+  box-shadow: 0 0.22em 0 var(--key-edge);
+  background: var(--key-face);
+  font: 500 2.9cqw / 1 var(--sans);
+}
+
+/* Clipboard. */
+.pill {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.2;
+  stroke-opacity: 0.5;
+}
+.pill-icon {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.75;
+}
+.clip {
+  position: absolute;
+  left: 18.2%;
+  right: 8%;
+  top: 81%;
+  height: 10%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  color: var(--ink);
+  font: 400 3.4cqw / 1 var(--sans);
+}
+.clip-text {
+  display: block;
+  white-space: nowrap;
+}
+
+/* ---------- Motion ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .k1 { animation: key1 14s linear infinite; }
+  .k2 { animation: key2 14s linear infinite; }
+  .k3 { animation: key3 14s linear infinite; }
+
+  .g-ready  { animation: glyph-ready 14s linear infinite; }
+  .g-listen { animation: glyph-listen 14s linear infinite; }
+  .g-trans  { animation: glyph-trans 14s linear infinite; }
+  .ring1 { animation: ring1 14s linear infinite; }
+  .ring2 { animation: ring2 14s linear infinite; }
+
+  .v1 { animation: voice1 14s linear infinite; }
+  .v2 { animation: voice2 14s linear infinite; }
+  .v3 { animation: voice3 14s linear infinite; }
+  .v4 { animation: voice4 14s linear infinite; }
+  .v5 { animation: voice5 14s linear infinite; }
+
+  .clip-text { animation: text-in 14s linear infinite; }
+  .pill { animation: pill 14s linear infinite; }
+  .pill-icon { animation: pill-icon 14s linear infinite; }
+
+  .s-hold { animation: step-hold 14s linear infinite; }
+  .s-speak { animation: step-speak 14s linear infinite; }
+  .s-release { animation: step-release 14s linear infinite; }
+}
+

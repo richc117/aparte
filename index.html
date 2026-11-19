@@ -17,6 +17,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preload" href="fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="animation.css">
 </head>
 <body>
   <div class="page">
@@ -48,19 +49,66 @@
         </svg>
       </section>
 
-      <section class="row" id="how" aria-labelledby="how-title">
+      <section class="row demo-row" id="how" aria-labelledby="how-title">
         <h2 id="how-title">How it works</h2>
-        <div class="body">
+
+        <div class="stage" role="img" aria-label="An animation of the three steps: holding the keys, speaking while the lines move, and releasing, after which the text appears on the clipboard.">
+          <svg class="scene" viewBox="0 0 600 600" aria-hidden="true">
+            <defs>
+              <clipPath id="screen"><rect x="0.5" y="0.5" width="599" height="599" rx="20"/></clipPath>
+            </defs>
+
+            <g clip-path="url(#screen)">
+              <rect class="bar" x="0" y="0" width="600" height="40"/>
+              <line class="bar-rule" x1="0" y1="40.5" x2="600" y2="40.5"/>
+              <rect class="dim" x="20" y="17" width="26" height="6" rx="3"/>
+              <rect class="dim" x="56" y="17" width="18" height="6" rx="3"/>
+              <rect class="dim" x="84" y="17" width="18" height="6" rx="3"/>
+              <rect class="dim" x="440" y="17" width="22" height="6" rx="3"/>
+              <rect class="dim" x="472" y="17" width="16" height="6" rx="3"/>
+              <rect class="dim" x="498" y="17" width="12" height="6" rx="3"/>
+
+              <g class="g-ready"><path class="glyph-line" transform="translate(525.5 -1.6) scale(.044)" d="M172 500 H322 C417 500 455 200 512 200 C569 200 607 500 702 500 H852 M172 640 H322 C417 640 455 450 512 450 C569 450 607 640 702 640 H852 M172 780 H322 C417 780 455 700 512 700 C569 700 607 780 702 780 H852"/></g>
+              <g class="g-listen">
+                <rect x="532" y="4" width="32" height="32" rx="8" fill="var(--ink)"/>
+                <path class="glyph-line glyph-inv" transform="translate(529.6 2.4) scale(.036)" d="M172 500 H322 C417 500 455 200 512 200 C569 200 607 500 702 500 H852 M172 640 H322 C417 640 455 450 512 450 C569 450 607 640 702 640 H852 M172 780 H322 C417 780 455 700 512 700 C569 700 607 780 702 780 H852"/>
+              </g>
+              <g class="g-trans"><path class="glyph-line glyph-text" d="M535 12.5 H561 M535 20 H554 M535 27.5 H544"/></g>
+
+              <circle class="ring ring1" cx="548" cy="20" r="14"/>
+              <circle class="ring ring2" cx="548" cy="20" r="14"/>
+            </g>
+            <rect class="frame" x="0.5" y="0.5" width="599" height="599" rx="20"/>
+
+      <g transform="translate(157.4 220.4) scale(.46)"><path class="voice v1" d="M0 0 H140 C225 0 259 -240 310 -240 C361 -240 395 0 480 0 H620"/></g>
+      <g transform="translate(157.4 252.6) scale(.46)"><path class="voice v2" d="M0 0 H140 C225 0 259 -190 310 -190 C361 -190 395 0 480 0 H620"/></g>
+      <g transform="translate(157.4 284.8) scale(.46)"><path class="voice v3" d="M0 0 H140 C225 0 259 -140 310 -140 C361 -140 395 0 480 0 H620"/></g>
+      <g transform="translate(157.4 317.0) scale(.46)"><path class="voice v4" d="M0 0 H140 C225 0 259 -90 310 -90 C361 -90 395 0 480 0 H620"/></g>
+      <g transform="translate(157.4 349.2) scale(.46)"><path class="voice v5" d="M0 0 H140 C225 0 259 -40 310 -40 C361 -40 395 0 480 0 H620"/></g>
+
+            <rect class="pill" x="50" y="486" width="500" height="60" rx="30"/>
+            <g class="pill-icon" transform="translate(77 503)">
+              <rect x="2" y="4" width="16" height="20" rx="3"/>
+              <rect x="6" y="0" width="8" height="6" rx="2"/>
+              <path d="M6 13 H14 M6 18 H12"/>
+            </g>
+          </svg>
+
+          <div class="keys" aria-hidden="true"><kbd class="k1">Control</kbd><kbd class="k2">Option</kbd><kbd class="k3">Space</kbd></div>
+          <p class="clip" aria-hidden="true"><span class="clip-text">Send the site plan before Thursday.</span></p>
+        </div>
+
+        <div class="copy">
           <dl class="steps">
-            <div>
+            <div class="s-hold">
               <dt>Hold</dt>
-              <dd>Press and hold <span class="keys"><kbd>Control</kbd><kbd>Option</kbd><kbd>Space</kbd></span> together. You can choose a different shortcut in Settings.</dd>
+              <dd>Press and hold <span class="keys-inline"><kbd>Control</kbd><kbd>Option</kbd><kbd>Space</kbd></span> together. You can choose a different shortcut in Settings.</dd>
             </div>
-            <div>
+            <div class="s-speak">
               <dt>Speak</dt>
               <dd>Say what you want written. Aparté listens only while the shortcut is held.</dd>
             </div>
-            <div>
+            <div class="s-release">
               <dt>Release</dt>
               <dd>Let go, and a soft sound tells you the text is on your clipboard. Paste it wherever you like.</dd>
             </div>
