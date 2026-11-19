@@ -32,17 +32,17 @@ css = []
 # ---- keys: pressed one after another, lifted together
 KEY_UP   = "transform: translateY(0); box-shadow: 0 .22em 0 var(--key-edge); background-color: var(--key-face); border-color: var(--key-edge);"
 KEY_DOWN = "transform: translateY(.2em); box-shadow: 0 .02em 0 var(--key-edge-down); background-color: var(--key-down); border-color: var(--key-edge-down);"
-for n, t0 in ((1, 1.00), (2, 1.25), (3, 1.50)):
+for n, t0 in ((1, 1.00), (2, 1.60), (3, 2.20)):
     css.append(kf(f"key{n}", [
-        (0, KEY_UP, None), (t0, KEY_UP, OUT), (t0 + .16, KEY_DOWN, None),
+        (0, KEY_UP, None), (t0, KEY_UP, EASE), (t0 + .30, KEY_DOWN, None),
         (8.20, KEY_DOWN, OUT), (8.45, KEY_UP, None), (14, KEY_UP, None)]))
 
 # ---- menu bar glyph: the app's real states
 css.append(kf("glyph-ready", [
-    (0, "opacity:1", None), (1.70, "opacity:1", EASE), (1.88, "opacity:0", None),
+    (0, "opacity:1", None), (2.60, "opacity:1", EASE), (2.78, "opacity:0", None),
     (8.95, "opacity:0", EASE), (9.12, "opacity:1", None), (14, "opacity:1", None)]))
 css.append(kf("glyph-listen", [
-    (0, "opacity:0", None), (1.70, "opacity:0", EASE), (1.88, "opacity:1", None),
+    (0, "opacity:0", None), (2.60, "opacity:0", EASE), (2.78, "opacity:1", None),
     (8.20, "opacity:1", EASE), (8.36, "opacity:0", None), (14, "opacity:0", None)]))
 css.append(kf("glyph-trans", [
     (0, "opacity:0", None), (8.20, "opacity:0", EASE), (8.36, "opacity:1", None),
@@ -87,10 +87,10 @@ def voice_value(i, k):
 
 IDLE = "transform: scaleY(.02); opacity:.5"
 for i in range(5):
-    stops = [(0, IDLE, None), (1.70, IDLE, SOFT)]
+    stops = [(0, IDLE, None), (2.60, IDLE, SOFT)]
     # listening: a slow breath while waiting for a voice
-    stops.append((2.35, "transform: scaleY(.13); opacity:.8", SOFT))
-    stops.append((2.85, "transform: scaleY(.09); opacity:.85", SOFT))
+    stops.append((2.80, "transform: scaleY(.13); opacity:.8", SOFT))
+    stops.append((2.95, "transform: scaleY(.09); opacity:.85", SOFT))
     for k in range(n_steps):
         t = 2.85 + k * STEP + .12
         if t > 8.05: break
