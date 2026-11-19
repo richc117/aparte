@@ -15,6 +15,8 @@ Hold a shortcut, speak, and let go. Aparté turns your voice into text on your M
 
 <p align="center"><sub>Version 0.1.0, 453 MB. For Macs with Apple Silicon running macOS 14 or later. English only.</sub></p>
 
+<p align="center"><a href="https://richc117.github.io/aparte/">richc117.github.io/aparte</a></p>
+
 ## How it works
 
 **Hold.** Press and hold <kbd>Control</kbd> <kbd>Option</kbd> <kbd>Space</kbd> together. You can choose a different shortcut in Settings.

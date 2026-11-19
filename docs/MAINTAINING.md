@@ -34,11 +34,11 @@ Then open http://127.0.0.1:8000. (Opening the files directly with `file://` show
 fallback fonts, because the Content-Security-Policy treats local files as a different
 origin.)
 
-## Going live
+## Where it lives
 
-The repository and the v0.1.0 Release exist. GitHub Pages is not on yet. To publish the
-site: Settings, Pages, deploy from the `main` branch, root folder. It appears at
-`https://richc117.github.io/aparte/`.
+The site is live at https://richc117.github.io/aparte/ (GitHub Pages, `main` branch, root
+folder). A push to `main` updates it within a minute or two. The v0.1.0 Release holds the
+download. The repository's "About" link and the README both point at the site.
 
 ## Each new release
 
@@ -50,7 +50,7 @@ site: Settings, Pages, deploy from the `main` branch, root folder. It appears at
    and "latest" skips pre-releases.
 3. Update the version and the size in the fine print under the Download button, in both
    `index.html` and `README.md`.
-4. Commit and push. Pages updates within a minute or two.
+4. Commit and push. The site updates within a minute or two.
 
 The zip is about 450 MB, so it must never be committed to the repository (GitHub rejects
 files over 100 MB). Release attachments are the right place for it.
