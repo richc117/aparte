@@ -65,15 +65,18 @@
               <dd>Let go, and a soft sound tells you the text is on your clipboard. Paste it wherever you like.</dd>
             </div>
           </dl>
-          <p>If you would rather not hold a key, Settings has a mode where you press once to start and again to stop. Recordings end on their own after five minutes.</p>
-          <p>Aparté lives in the menu bar. From there you can open a history of your dictations, and a list of fix-up words for names and terms you want spelled your way.</p>
+          <div class="notes">
+            <p>If you would rather not hold a key, Settings has a mode where you press once to start and again to stop. Recordings end on their own after five minutes.</p>
+            <p>Aparté lives in the menu bar. From there you can open a history of your dictations, and a list of fix-up words for names and terms you want spelled your way.</p>
+          </div>
         </div>
       </section>
 
       <section class="row" id="privacy" aria-labelledby="privacy-title">
         <h2 id="privacy-title">Privacy</h2>
         <div class="body">
-          <p><strong>No network.</strong> Aparté has no permission to connect to the internet, so it cannot send your voice or your text anywhere. The speech model is inside the app, and nothing is downloaded when you open it.</p>
+          <p class="lead">No network. Aparté has no permission to connect to the internet, so it cannot send your voice or your text anywhere.</p>
+          <p>The speech model is inside the app, and nothing is downloaded when you open it.</p>
           <p><strong>Audio stays in memory.</strong> Your recording is turned into text and then discarded. It is never saved to disk.</p>
           <p><strong>The clipboard copy stays local.</strong> It is not shared with your other Apple devices, and clipboard managers are asked to skip it.</p>
           <p><strong>History stays on your Mac.</strong> Saved dictations live in the app’s own folder, are left out of Time Machine backups, and are deleted after 30 days unless you choose otherwise. You can delete one or all of them at any time, or turn history off.</p>
@@ -88,14 +91,16 @@
         <h2 id="install-title">Install</h2>
         <div class="body">
           <ol class="install">
-            <li>Download <code>Aparte.zip</code>, open it, and drag Aparté into your Applications folder.</li>
+            <li><a href="https://github.com/richc117/aparte/releases/latest/download/Aparte.zip">Download <code>Aparte.zip</code></a>, open it, and drag Aparté into your Applications folder.</li>
             <li>Open it. macOS may ask you to confirm an app downloaded from the internet. Apple has checked this release for malicious software, so choose Open.</li>
             <li>The first launch prepares the speech model for your Mac. An hourglass shows in the menu bar for up to a minute. Later launches take seconds.</li>
             <li>Allow microphone access when macOS asks.</li>
           </ol>
           <p>To check that the download is intact, run this in Terminal. It should print the line below it.</p>
-          <pre><code>shasum -a 256 ~/Downloads/Aparte.zip</code></pre>
-          <pre class="hash"><code>61083ac3013fd37c3b5eda5e63749c020cc47211e5c574e3054ff75d6e8b8dbf</code></pre>
+          <div class="shell">
+            <pre><code>shasum -a 256 ~/Downloads/Aparte.zip</code></pre>
+            <pre class="hash"><code>61083ac3013fd37c3b5eda5e63749c020cc47211e5c574e3054ff75d6e8b8dbf</code></pre>
+          </div>
           <p class="small">Aparté never checks for updates by itself. New versions appear under <a href="https://github.com/richc117/aparte/releases">Releases</a>.</p>
         </div>
       </section>

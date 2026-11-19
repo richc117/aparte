@@ -167,7 +167,7 @@ p {
 .swell path {
   fill: none;
   stroke: currentColor;
-  stroke-width: 16;
+  stroke-width: 12;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -234,7 +234,7 @@ h1 {
   .hero {
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     column-gap: 4rem;
-    min-height: min(44rem, calc(100svh - 6rem));
+    min-height: min(36rem, calc(100svh - 9rem));
   }
   .swell {
     width: 100%;
@@ -242,11 +242,15 @@ h1 {
   }
 }
 
-/* On narrow screens the mark leads, a little smaller. */
+/* On narrow screens the mark leads, small enough that the headline and the Download
+   button stay on the first screen of a phone. */
 @media (max-width: 55.99rem) {
+  .hero {
+    gap: 2rem;
+  }
   .swell {
     order: -1;
-    width: min(78%, 22rem);
+    width: min(52%, 13rem);
   }
 }
 
@@ -267,6 +271,13 @@ h1 {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     column-gap: 4rem;
   }
+  /* The title stays in view while its long section scrolls past, so the left column is
+     never an empty void. */
+  .row > h2 {
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+  }
 }
 
 h2 {
@@ -284,6 +295,25 @@ h2 {
   font-weight: 500;
 }
 .body > :last-child {
+  margin-bottom: 0;
+}
+
+/* Privacy: the main promise is the largest thing in its section. */
+.body .lead {
+  margin-bottom: 1.25rem;
+  color: var(--ink);
+  font: 400 clamp(1.5rem, 2.6vw, 1.875rem) / 1.28 var(--serif);
+  letter-spacing: -0.005em;
+}
+
+/* Side notes after the steps: set apart by a rule and a smaller size, so they do not
+   read as a fourth step. */
+.notes {
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9375rem;
+}
+.notes > :last-child {
   margin-bottom: 0;
 }
 
@@ -375,6 +405,23 @@ pre {
 pre code {
   padding: 0;
   background: none;
+}
+/* A command and what it prints: one box, a hairline between. */
+.shell {
+  margin: 0 0 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--wash);
+}
+.shell pre {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+.shell pre + pre {
+  border-top: 1px solid var(--rule);
+  color: var(--soft);
 }
 /* The checksum is 64 characters: let it wrap rather than run under the border. */
 .hash code {
